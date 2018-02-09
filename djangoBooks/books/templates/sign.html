@@ -12,27 +12,27 @@
     <title>Sign the Guest Book</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="static/guestbook/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="static/guestbook/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap-theme.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="static/guestbook/sign.css" rel="stylesheet">
+    <link href="{% static 'sign.css' %}" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="container">
-
       <form class="form-signin" method="POST" action="{% url 'sign' %}">
+        {% csrf_token %}
         <h2 class="form-signin-heading">Sign the Guest Book</h2>
         <div class="form-group">
-          <label for="inputName" class="sr-only">Name</label>
-          <input type="text" placeholder="Name" />
+            <label for="name" class="sr-only">Name</label>
+            {{ form.name }}
         </div>
         <div class="form-group">
             <label for="comment" class="sr-only">Comment:</label>
-            <textarea type="text" placeholder="Comment"></textarea>
+            {{ form.comment }}
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign</button>
       </form>
